@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invest — Studio b. LMM Bridge Fund I · Backtester access for accredited LPs</title>
-  <meta name="description" content="LP entry point for Studio b. LMM Bridge Fund I — the non-bank lender for the global lower middle market. Run the LMMI backtester against thirty years of cross-jurisdictional default + recovery data. Fund I offered under Rule 506(c).">
+  <title>Invest — Studio b. LMM Bridge Fund I · Audit the model. Test the product.</title>
+  <meta name="description" content="The Studio b. LMMI is the open methodology that underwrites the fund. The flagship product is what the model designed. The backtester is the proof. Verify accreditation to access. Fund I offered under Rule 506(c).">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Studio b. LMM Bridge Fund I">
-  <meta property="og:title" content="Run the backtest. Sharpen the thesis.">
-  <meta property="og:description" content="LP entry for the non-bank lender for the global lower middle market. Backtester access against thirty years of LMM default + recovery data. Fund I, Rule 506(c). Accredited investors only.">
+  <meta property="og:title" content="Audit the model. Test the product. Then decide.">
+  <meta property="og:description" content="The methodology is open. The product specs are public. The backtester is the proof artifact — apply your own assumptions to historical model outputs. Verify accreditation to access. Studio b. LMM Bridge Fund I, Rule 506(c).">
   <meta property="og:url" content="https://invest.b.studio">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,10 +116,6 @@
       font-style: italic;
       color: var(--forest);
       font-weight: 700;
-      background: rgba(247,211,68,0.18);
-      padding: 0 0.18em;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
     }
     .hero .lede {
       font-size: 1.05rem;
@@ -245,43 +241,60 @@
       margin-bottom: 1rem;
     }
     .sec p strong { color: var(--ink); font-weight: 600; }
+    .sec a {
+      color: var(--forest);
+      text-decoration: underline;
+      text-decoration-color: var(--forest-30);
+      text-underline-offset: 0.2em;
+      transition: text-decoration-color 0.12s;
+    }
+    .sec a:hover { text-decoration-color: var(--forest); }
 
-    /* ── Why-invest cards (preserved from live, adapted to narrow column) */
-    .why-cards {
+    /* ── Product spec block ─────────────────────────────────────── */
+    .spec-block {
+      margin: 2rem 0;
+      border: 1px solid var(--ink-10);
+      background: var(--paper-dk);
+    }
+    .spec-row {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 9rem 1fr;
       gap: 0;
-      margin-top: 2rem;
+      border-bottom: 1px solid var(--ink-10);
     }
-    .why-card {
-      padding: 1.75rem 0;
-      border-top: 1px solid var(--ink-10);
-    }
-    .why-card:last-child { border-bottom: 1px solid var(--ink-10); }
-    .why-num {
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--vermillion);
-      margin-bottom: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--ink-55);
+      padding: 1rem 1.25rem;
+      border-right: 1px solid var(--ink-10);
+      display: flex;
+      align-items: center;
     }
-    .why-title {
-      font-family: 'Fraunces', serif;
+    .spec-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
       font-weight: 700;
-      font-style: italic;
-      font-size: 1.25rem;
-      line-height: 1.2;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-      font-variation-settings: "opsz" 60;
+      color: var(--forest);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
     }
-    .why-body {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--ink-72);
+    .spec-val.primary {
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .spec-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--ink-55);
+      margin-left: 0.75rem;
+      font-variation-settings: normal;
     }
 
     /* ── Attestation / form section ─────────────────────────────── */
@@ -586,6 +599,9 @@
       .foot-row { flex-direction: column; align-items: flex-start; }
       .masthead-tag { display: none; }
       .ticker-wrap { padding: 1rem 1.5rem; }
+      .spec-row { grid-template-columns: 1fr; }
+      .spec-label { border-right: none; border-bottom: 1px solid var(--ink-10); padding-bottom: 0.5rem; }
+      .spec-val { padding-top: 0.5rem; }
     }
   </style>
 </head>
@@ -621,8 +637,8 @@
   <!-- Hero -->
   <div class="hero">
     <p class="eyebrow">Studio b<span style="color:var(--vermillion)">.</span> LMM Bridge Fund I <span class="vm">·</span> LP entry</p>
-    <h1>Invest in the gap <em>banks can't reach.</em></h1>
-    <p class="lede">Studio b. LMM Bridge Fund I is purpose-built for the deepest structural gap in LMM credit — where borrower credit is good but banks cannot move quickly enough, structure flexibly enough, or stay long enough. The fund underwrites against the same data we publish quarterly as Studio b. LMMI. Fund I opens to qualified purchasers and accredited investors at first close.</p>
+    <h1>Audit the model. <em>Test the product.</em></h1>
+    <p class="lede">The Studio b. LMMI is the open methodology that underwrites the fund's strategy. The flagship product is what the model designed. The backtester lets you run the product against historical model outputs and verify the logic yourself. Accreditation unlocks access.</p>
     <a href="#request" class="cta">Verify accreditation <span class="cta-arrow">→</span></a>
     <a href="https://lmmi.b.studio/methodology" class="cta-secondary">Read methodology <span class="vm">→</span></a>
   </div>
@@ -631,33 +647,68 @@
 
 <div class="surface">
 
-  <!-- §1 The gap / §2 Our edge / §3 Structure — LP-tightened copy -->
+  <!-- §01 The model -->
   <section class="sec">
-    <p class="sec-num">§01<span class="grey">·</span>THE GAP</p>
-    <h2>Where banks can't move, structure, or stay.</h2>
-    <p>Roughly $5–40M EBITDA borrowers, sub-BDC and sub-large-bank. Twenty-plus years of SBA 7(a), Companies House workouts, and the LMM-eligible BDC universe show the gap with vintage-anchored recovery. The backtester applies your assumptions to the same dataset.</p>
+    <p class="sec-num">§01<span class="grey">·</span>THE MODEL</p>
+    <h2>The methodology is open. Anyone can read it.</h2>
+    <p>The sub-$25M EBITDA private credit segment has no public benchmark. Studio b. built one. The <a href="https://lmmi.b.studio/methodology">Studio b. LMMI</a> is the live methodology that underwrites the fund's strategy — published, versioned, and updated quarterly against the eligible BDC universe.</p>
+    <p>The model exists because the decision logic has to be auditable. When the model's view of the segment changes, the strategy changes with it. Each version of the LMMI retunes the approach. That's the point.</p>
+    <p>LPs don't invest because they trust instincts. They invest because they can read the reasoning and run the numbers themselves.</p>
   </section>
 
+  <!-- §02 The flagship product -->
   <section class="sec">
-    <p class="sec-num">§02<span class="grey">·</span>OUR EDGE</p>
-    <h2>Originate from inside the segment.</h2>
-    <p>Studio b. operates inside the LMM — operators, advisors, capital across US and UK. Deal flow comes from rooms our portfolio is already in, not from auctions. The data we underwrite against publishes quarterly as Studio b<span class="vm">.</span> LMMI; the backtester is the LP-only build.</p>
+    <p class="sec-num">§02<span class="grey">·</span>THE FLAGSHIP PRODUCT</p>
+    <h2>This is what the model designed.</h2>
+    <p>The model's output is a specific credit product — not a general fund strategy. The specifications below are what Studio b. underwrites in the lower middle market.</p>
+
+    <div class="spec-block">
+      <div class="spec-row">
+        <span class="spec-label">Interest</span>
+        <span class="spec-val primary">17% interest only <span class="spec-note">cash yield, current pay</span></span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">Origination fee</span>
+        <span class="spec-val primary">4% <span class="spec-note">paid upfront at close</span></span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">Term</span>
+        <span class="spec-val">12–24 months <span class="spec-note">bridge profile</span></span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">Position</span>
+        <span class="spec-val">1st lien <span class="spec-note">senior in cap stack</span></span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">Guarantee</span>
+        <span class="spec-val">Personal guarantee <span class="spec-note">sponsor-aligned</span></span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-label">Conversion right</span>
+        <span class="spec-val">At maturity: <strong>greater of 4× trailing EBITDA or original deal valuation</strong></span>
+      </div>
+    </div>
+
+    <p>The conversion right is the signature feature. If the borrower can't refinance at maturity, the principal converts to equity at the greater of 4× trailing EBITDA or the original deal valuation. The loss case becomes the ownership case. The model says this structure performs in this segment. The backtester is where you verify that.</p>
   </section>
 
+  <!-- §03 The backtester -->
   <section class="sec">
-    <p class="sec-num">§03<span class="grey">·</span>STRUCTURE</p>
-    <h2>Fund I. BVI master, Delaware feeder. 7-year closed-end.</h2>
-    <p>Four-year reinvestment, three-year harvest. Quarterly distributions. ILPA-aligned reporting from inception. Non-U.S. LPs avoid entanglement in the U.S. tax perimeter via the master. Qualified purchasers and accredited investors only; verification required under Rule 506(c).</p>
+    <p class="sec-num">§03<span class="grey">·</span>THE BACKTESTER</p>
+    <h2>The proof artifact. Not a demo.</h2>
+    <p>The backtester runs the same model that designs the live strategy. Apply your own PD, LGD, gross spread, and allocation assumptions to historical model outputs and see what the strategy would have returned under your scenarios.</p>
+    <p>This is what LPs are actually getting access to. Your model runs inform how Studio b. thinks about the segment. The backtester is the audit trail in motion.</p>
+    <p>Access is gated by Rule 506(c) self-attestation. The form in §04 verifies eligibility.</p>
   </section>
 
 </div><!-- /surface -->
 
-<!-- Attestation / form section — full-bleed forest bg -->
+<!-- §04 Verify accreditation — full-bleed forest bg -->
 <section class="request" id="request">
   <div class="request-inner">
-    <p class="request-eyebrow">Rule 506(c) · Accredited self-attestation · Backtester access</p>
-    <h2>Run the backtest. Sharpen the thesis.</h2>
-    <p class="request-intro">We don't send a deck. We share access to the LMMI backtest model — apply your own assumptions to thirty years of cross-jurisdictional default and recovery data, and see how the strategy would have performed against your scenarios. Your model runs sharpen our thesis. Fund I is offered under Rule 506(c) of Regulation D — public solicitation of accredited investors is permitted, and subscription requires <strong>third-party verification</strong> of accredited status prior to investment. Backtester access is shared after self-attestation and a brief introduction.</p>
+    <p class="request-eyebrow">§04 · Rule 506(c) · Accredited self-attestation · Backtester access</p>
+    <h2>Verify accreditation to access the backtester.</h2>
+    <p class="request-intro">We don't send a deck. We share access to the LMMI backtester — apply your own assumptions to thirty years of cross-jurisdictional default and recovery data, and see how the strategy would have performed against your scenarios. Your model runs sharpen our thesis. Fund I is offered under Rule 506(c) of Regulation D — public solicitation of accredited investors is permitted, and subscription requires <strong>third-party verification</strong> of accredited status prior to investment. Backtester access is shared after self-attestation and a brief introduction.</p>
 
     <div class="gate">
       <label class="gate-label">
@@ -696,7 +747,7 @@
       <div class="foot-col">
         <h4>Read the index</h4>
         <a href="https://lmmi.b.studio">Studio b<span style="color:var(--vermillion)">.</span> LMMI — the index</a>
-        <a href="https://lmmi.b.studio#why">Why we built it</a>
+        <a href="https://lmmi.b.studio/methodology">Read methodology</a>
         <a href="mailto:invest@b.studio">invest@b<span style="color:var(--vermillion)">.</span>studio</a>
       </div>
       <div class="foot-col">
@@ -709,7 +760,7 @@
     </div>
     <div class="foot-row">
       <span>&copy; 2026 Studio b<span class="vm">.</span> Consulting, LLC</span>
-      <span>Capital, by Studio b<span class="vm">.</span> · For accredited investors only</span>
+      <span>Studio b<span class="vm">.</span> LMM Bridge Fund I · For accredited investors only</span>
       <span>INVEST<span class="vm">.</span>B<span class="vm">.</span>STUDIO</span>
     </div>
   </div>
