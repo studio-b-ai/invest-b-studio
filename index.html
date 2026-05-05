@@ -99,6 +99,7 @@
       color: var(--forest);
       margin-bottom: 1.75rem;
     }
+    .vm { color: var(--vermillion); }
     .hero h1 {
       font-family: 'Fraunces', serif;
       font-weight: 700;
@@ -137,13 +138,14 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       padding: 1.1rem 2.25rem;
-      background: var(--forest);
+      background: var(--vermillion);
       color: var(--paper);
       text-decoration: none;
-      transition: background 0.12s;
-      border: 1px solid var(--forest);
+      transition: background 0.12s, border-color 0.12s;
+      border: 1px solid var(--vermillion);
     }
-    .cta:hover { background: var(--ink); border-color: var(--ink); }
+    .cta:hover { background: #B83820; border-color: #B83820; }
+    .cta .cta-arrow { display: inline-block; margin-left: 0.35em; font-weight: 700; }
     .cta-secondary {
       display: inline-block;
       margin-left: 1.25rem;
@@ -599,18 +601,9 @@
     <span class="masthead-tag">LP ENTRY · STUDIO B<span style="color:var(--vermillion)">.</span> LMM BRIDGE FUND I</span>
   </div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <p class="eyebrow">Studio b<span style="color:var(--vermillion)">.</span> LMM Bridge Fund I · LP entry</p>
-    <h1>Invest in the gap <em>banks can't reach.</em></h1>
-    <p class="lede">Studio b. LMM Bridge Fund I is purpose-built for the deepest structural gap in LMM credit — where borrower credit is good but banks cannot move quickly enough, structure flexibly enough, or stay long enough. The fund underwrites against the same data we publish quarterly as Studio b. LMMI. Fund I opens to qualified purchasers and accredited investors at first close.</p>
-    <a href="#request" class="cta">Verify accreditation →</a>
-    <a href="https://lmmi.b.studio/methodology" class="cta-secondary">Read methodology</a>
-  </div>
+</div><!-- /surface (masthead-only) -->
 
-</div><!-- /surface -->
-
-<!-- LMMI Ticker — same format as lmmi.b.studio -->
+<!-- LMMI Ticker — same position + format as lmmi.b.studio (between masthead and hero) -->
 <div class="ticker-wrap" id="dli-ticker">
   <div class="ticker-inner">
     <span class="ticker-label">LMMI</span>
@@ -626,6 +619,19 @@
     Recovery — vintage anchor: Companies House LMM workouts initiated 2018–2022 with realized outcome.
   </div>
 </div>
+
+<div class="surface">
+
+  <!-- Hero -->
+  <div class="hero">
+    <p class="eyebrow">Studio b<span style="color:var(--vermillion)">.</span> LMM Bridge Fund I <span class="vm">·</span> LP entry</p>
+    <h1>Invest in the gap <em>banks can't reach.</em></h1>
+    <p class="lede">Studio b. LMM Bridge Fund I is purpose-built for the deepest structural gap in LMM credit — where borrower credit is good but banks cannot move quickly enough, structure flexibly enough, or stay long enough. The fund underwrites against the same data we publish quarterly as Studio b. LMMI. Fund I opens to qualified purchasers and accredited investors at first close.</p>
+    <a href="#request" class="cta">Verify accreditation <span class="cta-arrow">→</span></a>
+    <a href="https://lmmi.b.studio/methodology" class="cta-secondary">Read methodology <span class="vm">→</span></a>
+  </div>
+
+</div><!-- /surface -->
 
 <div class="surface">
 
