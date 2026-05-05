@@ -425,13 +425,13 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       padding: 1rem 2rem;
-      background: var(--ink);
+      background: var(--vermillion);
       color: var(--paper);
       text-decoration: none;
-      transition: opacity 0.12s;
+      transition: background 0.12s;
       margin-top: 0.5rem;
     }
-    .mailto-fallback:hover { opacity: 0.85; }
+    .mailto-fallback:hover { background: #B83820; }
 
     /* ── HubSpot form overrides ──────────────────────────────────── */
     .hs-form-prospectus .form-columns-2 > .hs-form-field,
@@ -773,7 +773,16 @@
           portalId: '49070660',
           formId: '8029f7ca-b512-4922-b56d-34d2dff1bfbd',
           target: '#hs-form-target',
-          css: '',
+          css: [
+            "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap');",
+            "form, .hs-form, body { font-family: 'Inter', sans-serif !important; color: #0D0D0D !important; background: transparent !important; }",
+            "label { font-family: 'JetBrains Mono', monospace !important; font-size: 0.6rem !important; font-weight: 700 !important; letter-spacing: 0.18em !important; text-transform: uppercase !important; color: rgba(13,13,13,0.55) !important; }",
+            "input[type=text], input[type=email], input[type=tel], textarea, select { background: #F4F1EB !important; border: 1px solid rgba(13,13,13,0.30) !important; border-radius: 0 !important; padding: 0.7rem 0.9rem !important; font-family: 'Inter', sans-serif !important; font-size: 0.95rem !important; color: #0D0D0D !important; }",
+            "input:focus, textarea:focus, select:focus { outline: none !important; border-color: #1A3328 !important; }",
+            ".hs-button, input[type=submit], button[type=submit] { font-family: 'JetBrains Mono', monospace !important; font-size: 0.7rem !important; font-weight: 700 !important; letter-spacing: 0.18em !important; text-transform: uppercase !important; padding: 1.05rem 2.25rem !important; background: #D94425 !important; color: #F4F1EB !important; border: 1px solid #D94425 !important; border-radius: 0 !important; cursor: pointer !important; transition: background 0.12s, border-color 0.12s !important; }",
+            ".hs-button:hover, input[type=submit]:hover, button[type=submit]:hover { background: #B83820 !important; border-color: #B83820 !important; }",
+            ".hs-error-msg, .hs-error-msgs li { color: #D94425 !important; font-family: 'Inter', sans-serif !important; font-size: 0.78rem !important; }"
+          ].join(''),
           cssClass: 'hs-form-prospectus'
         });
         setTimeout(function() {
