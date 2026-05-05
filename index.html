@@ -13,155 +13,595 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,900;1,9..144,900&family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;1,9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --paper: #F4F1EB;
-      --ink: #0D0D0D;
-      --forest: #1A3328;
+      --paper:      #F4F1EB;
+      --paper-dk:   #EAE6DC;
+      --ink:        #0D0D0D;
+      --ink-72:     rgba(13,13,13,0.72);
+      --ink-55:     rgba(13,13,13,0.55);
+      --ink-30:     rgba(13,13,13,0.30);
+      --ink-10:     rgba(13,13,13,0.10);
       --vermillion: #D94425;
-      --yolk: #F7D344;
+      --forest:     #1A3328;
+      --forest-72:  rgba(26,51,40,0.72);
+      --forest-30:  rgba(26,51,40,0.30);
+      --forest-10:  rgba(26,51,40,0.10);
+      --stripe-height: 10px;
     }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; min-height: 100vh; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.55;
+      min-height: 100vh;
+    }
 
-    .stripe { height: 6px; width: 100%; background: repeating-linear-gradient(-45deg, var(--forest) 0, var(--forest) 8px, var(--paper) 8px, var(--paper) 16px); }
+    /* ── Caution stripe ─────────────────────────────────────────── */
+    .stripe {
+      height: var(--stripe-height);
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--forest) 0, var(--forest) 9px,
+        var(--paper) 9px, var(--paper) 18px
+      );
+    }
 
-    /* Nav */
-    .nav { padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(26,51,40,0.1); }
-    .bmark { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.6rem; color: var(--forest); text-decoration: none; letter-spacing: -0.04em; line-height: 1; }
+    /* ── Surface / narrow column ────────────────────────────────── */
+    .surface {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Masthead ───────────────────────────────────────────────── */
+    .masthead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--ink-10);
+    }
+    .bmark {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+      text-decoration: none;
+      line-height: 1;
+    }
     .bmark .dot { color: var(--vermillion); }
-    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-link { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,51,40,0.5); text-decoration: none; transition: color 0.12s; padding: 0.5rem; }
-    .nav-link:hover { color: var(--forest); }
-    .brand-b { text-transform: none; }
-    .brand-dot { color: var(--vermillion); }
+    .masthead-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--forest);
+    }
 
-    /* Hero */
-    .hero { padding: 6rem 4rem 4rem; max-width: 1100px; }
-    .firm-label { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,51,40,0.5); margin-bottom: 2rem; }
-    h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 0.98; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.75rem; max-width: 17ch; }
-    h1 em { font-style: italic; color: var(--forest); }
-    .hero-body { font-size: 1.05rem; line-height: 1.7; color: rgba(13,13,13,0.72); max-width: 600px; margin-bottom: 2rem; }
-    .hero-cta { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2rem; background: var(--forest); color: var(--paper); text-decoration: none; transition: background 0.12s; border: 2px solid var(--forest); }
-    .hero-cta:hover { background: var(--ink); border-color: var(--ink); }
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 5rem 0 3.5rem;
+    }
+    .hero .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--forest);
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: clamp(2.6rem, 5vw, 3.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      max-width: 18ch;
+      font-variation-settings: "opsz" 144;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--forest);
+      font-weight: 700;
+    }
+    .hero .lede {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--ink-72);
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
 
-    /* DLI Ticker */
-    .ticker { background: var(--forest); color: var(--paper); padding: 0 4rem; }
-    .ticker-line { display: flex; align-items: center; padding: 0.6rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; flex-wrap: wrap; }
+    /* ── CTAs ───────────────────────────────────────────────────── */
+    .cta {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 1.1rem 2.25rem;
+      background: var(--forest);
+      color: var(--paper);
+      text-decoration: none;
+      transition: background 0.12s;
+      border: 1px solid var(--forest);
+    }
+    .cta:hover { background: var(--ink); border-color: var(--ink); }
+    .cta-secondary {
+      display: inline-block;
+      margin-left: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-55);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-30);
+      padding-bottom: 0.2rem;
+    }
+    .cta-secondary:hover { color: var(--vermillion); border-color: var(--vermillion); }
+
+    /* ── DLI Ticker ─────────────────────────────────────────────── */
+    .ticker {
+      background: var(--forest);
+      color: var(--paper);
+    }
+    .ticker-line {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      flex-wrap: wrap;
+    }
     .ticker-sep { margin: 0 0.65rem; opacity: 0.4; }
     .ticker-label { opacity: 0.6; font-weight: 500; }
-    .ticker-link { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,211,68,0.75); text-decoration: none; border-bottom: 1px solid rgba(247,211,68,0.3); padding-bottom: 1px; transition: color 0.12s; }
-    .ticker-link:hover { color: var(--yolk); }
-    .ticker-foot { font-family: 'JetBrains Mono', monospace; font-size: 0.52rem; letter-spacing: 0.04em; color: rgba(244,241,235,0.4); padding: 0 0 0.55rem; line-height: 1.7; }
+    .ticker-link {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(244,241,235,0.65);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244,241,235,0.3);
+      padding-bottom: 1px;
+      transition: color 0.12s;
+    }
+    .ticker-link:hover { color: var(--paper); }
+    .ticker-foot {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 0.55rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.04em;
+      color: rgba(244,241,235,0.4);
+      line-height: 1.7;
+    }
 
-    /* Why Invest grid */
-    .why { padding: 5rem 4rem; border-top: 3px solid var(--ink); border-bottom: 3px solid var(--ink); background: var(--paper); }
-    .why-head { max-width: 1100px; margin-bottom: 3rem; }
-    .why-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,51,40,0.5); margin-bottom: 1rem; }
-    .why-head h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 22ch; }
-    .why-head h2 em { font-style: italic; color: var(--forest); }
-    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 1300px; }
-    .why-card { padding: 2rem 2rem 2.25rem; border: 1px solid rgba(26,51,40,0.18); border-right: none; }
-    .why-card:last-child { border-right: 1px solid rgba(26,51,40,0.18); }
-    .why-num { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; color: var(--vermillion); margin-bottom: 1rem; }
-    .why-title { font-family: 'Fraunces', serif; font-weight: 900; font-style: italic; font-size: 1.35rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 1rem; }
-    .why-body { font-size: 0.92rem; line-height: 1.65; color: rgba(13,13,13,0.7); }
+    /* ── Sections ───────────────────────────────────────────────── */
+    .sec {
+      padding: 4rem 0;
+      border-top: 1px solid var(--ink-10);
+    }
+    .sec-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--vermillion);
+      margin-bottom: 1.5rem;
+    }
+    .sec-num .grey { color: var(--ink-30); margin: 0 0.4rem; }
+    .sec h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      line-height: 1.15;
+      color: var(--forest);
+      letter-spacing: -0.015em;
+      margin-bottom: 1.5rem;
+      font-variation-settings: "opsz" 60;
+    }
+    .sec p {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--ink-72);
+      margin-bottom: 1rem;
+    }
+    .sec p strong { color: var(--ink); font-weight: 600; }
 
-    /* Form section */
-    .request { background: var(--forest); color: var(--paper); padding: 5rem 4rem; }
-    .request-inner { max-width: 720px; }
-    .request-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yolk); margin-bottom: 1.25rem; }
-    .request h2 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.1; letter-spacing: -0.025em; color: var(--paper); margin-bottom: 1.25rem; }
-    .request h2 em { font-style: italic; color: var(--yolk); }
-    .request-intro { font-size: 1rem; line-height: 1.7; color: rgba(244,241,235,0.72); margin-bottom: 2.5rem; }
+    /* ── Why-invest cards (preserved from live, adapted to narrow column) */
+    .why-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 2rem;
+    }
+    .why-card {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--ink-10);
+    }
+    .why-card:last-child { border-bottom: 1px solid var(--ink-10); }
+    .why-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--vermillion);
+      margin-bottom: 0.85rem;
+    }
+    .why-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      font-variation-settings: "opsz" 60;
+    }
+    .why-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--ink-72);
+    }
 
-    /* Accredited gate */
-    .gate { border: 2px solid rgba(244,241,235,0.2); padding: 1.75rem 1.75rem; margin-bottom: 2rem; background: rgba(13,13,13,0.18); }
-    .gate-label { display: flex; gap: 1rem; align-items: flex-start; cursor: pointer; user-select: none; }
-    .gate-label input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 22px; height: 22px; border: 2px solid var(--paper); background: transparent; flex-shrink: 0; margin-top: 2px; cursor: pointer; position: relative; border-radius: 0; }
-    .gate-label input[type="checkbox"]:checked { background: var(--yolk); border-color: var(--yolk); }
-    .gate-label input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: -4px; left: 2px; color: var(--forest); font-weight: 800; font-size: 1.1rem; line-height: 1; }
-    .gate-text { font-size: 0.92rem; line-height: 1.6; color: rgba(244,241,235,0.85); }
+    /* ── Attestation / form section ─────────────────────────────── */
+    .request {
+      background: var(--forest);
+      color: var(--paper);
+      padding: 5rem 0;
+      margin-top: 4rem;
+    }
+    .request-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .request-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(244,241,235,0.55);
+      margin-bottom: 1.25rem;
+    }
+    .request h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--paper);
+      margin-bottom: 1.25rem;
+      font-variation-settings: "opsz" 60;
+    }
+    .request-intro {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(244,241,235,0.72);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Accredited gate ────────────────────────────────────────── */
+    .gate {
+      border: 1px solid rgba(244,241,235,0.2);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      background: rgba(13,13,13,0.18);
+    }
+    .gate-label {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      cursor: pointer;
+      user-select: none;
+    }
+    .gate-label input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--paper);
+      background: transparent;
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      position: relative;
+      border-radius: 0;
+    }
+    .gate-label input[type="checkbox"]:checked {
+      background: rgba(217,68,37,0.85);
+      border-color: var(--vermillion);
+    }
+    .gate-label input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: -4px;
+      left: 2px;
+      color: var(--paper);
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .gate-text {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: rgba(244,241,235,0.85);
+    }
     .gate-text strong { color: var(--paper); font-weight: 700; }
-    .gate-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,211,68,0.7); margin-top: 1rem; }
+    .gate-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(244,241,235,0.45);
+      margin-top: 1rem;
+    }
 
-    /* Form reveal */
-    .form-wrap { display: none; padding: 1.75rem 1.75rem; background: var(--paper); color: var(--ink); border: 2px solid var(--yolk); }
+    /* ── Form reveal ────────────────────────────────────────────── */
+    .form-wrap {
+      display: none;
+      padding: 1.75rem;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--ink);
+    }
     .form-wrap.live { display: block; }
-    .form-wrap-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vermillion); margin-bottom: 1rem; }
-    .form-wrap h3 { font-family: 'Fraunces', serif; font-weight: 900; font-style: italic; font-size: 1.4rem; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 0.5rem; }
-    .form-wrap-intro { font-size: 0.88rem; line-height: 1.6; color: rgba(13,13,13,0.65); margin-bottom: 1.5rem; }
+    .form-wrap-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--vermillion);
+      margin-bottom: 1rem;
+    }
+    .form-wrap h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      font-variation-settings: "opsz" 60;
+    }
+    .form-wrap-intro {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: rgba(13,13,13,0.65);
+      margin-bottom: 1.5rem;
+    }
 
-    /* Mailto fallback button (in case HubSpot embed doesn't render) */
-    .mailto-fallback { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem 2rem; background: var(--ink); color: var(--paper); text-decoration: none; transition: opacity 0.12s; margin-top: 0.5rem; }
+    /* ── Mailto fallback ────────────────────────────────────────── */
+    .mailto-fallback {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      transition: opacity 0.12s;
+      margin-top: 0.5rem;
+    }
     .mailto-fallback:hover { opacity: 0.85; }
 
-    /* HubSpot prospectus form overrides */
+    /* ── HubSpot form overrides ──────────────────────────────────── */
     .hs-form-prospectus .form-columns-2 > .hs-form-field,
-    .hs-form-prospectus .form-columns-3 > .hs-form-field { width: 100% !important; float: none !important; padding-right: 0 !important; }
+    .hs-form-prospectus .form-columns-3 > .hs-form-field {
+      width: 100% !important;
+      float: none !important;
+      padding-right: 0 !important;
+    }
     .hs-form-prospectus .hs-form-field { margin-bottom: 1rem !important; }
-    .hs-form-prospectus label { font-family: 'JetBrains Mono', monospace !important; font-size: 0.55rem !important; font-weight: 700 !important; letter-spacing: 0.15em !important; text-transform: uppercase !important; color: rgba(13,13,13,0.6) !important; display: block !important; margin-bottom: 0.4rem !important; }
+    .hs-form-prospectus label {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 0.55rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase !important;
+      color: rgba(13,13,13,0.6) !important;
+      display: block !important;
+      margin-bottom: 0.4rem !important;
+    }
     .hs-form-prospectus input[type="text"],
     .hs-form-prospectus input[type="email"],
     .hs-form-prospectus input[type="tel"],
     .hs-form-prospectus textarea,
-    .hs-form-prospectus select { width: 100% !important; padding: 0.75rem 0.85rem !important; border: 1px solid rgba(13,13,13,0.25) !important; border-radius: 0 !important; background: var(--paper) !important; color: var(--ink) !important; font-family: 'Inter', sans-serif !important; font-size: 0.92rem !important; }
+    .hs-form-prospectus select {
+      width: 100% !important;
+      padding: 0.75rem 0.85rem !important;
+      border: 1px solid rgba(13,13,13,0.25) !important;
+      border-radius: 0 !important;
+      background: var(--paper) !important;
+      color: var(--ink) !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.92rem !important;
+    }
     .hs-form-prospectus input:focus,
     .hs-form-prospectus textarea:focus,
-    .hs-form-prospectus select:focus { outline: none !important; border-color: var(--forest) !important; }
-    .hs-form-prospectus .hs-button { font-family: 'JetBrains Mono', monospace !important; font-size: 0.65rem !important; font-weight: 700 !important; letter-spacing: 0.15em !important; text-transform: uppercase !important; padding: 1rem 2rem !important; background: var(--forest) !important; color: var(--paper) !important; border: 2px solid var(--forest) !important; border-radius: 0 !important; cursor: pointer !important; transition: background 0.12s !important; margin-top: 0.5rem !important; }
-    .hs-form-prospectus .hs-button:hover { background: var(--ink) !important; border-color: var(--ink) !important; }
-    .hs-form-prospectus .hs-error-msgs { list-style: none !important; padding: 0 !important; margin-top: 0.35rem !important; }
-    .hs-form-prospectus .hs-error-msg { color: var(--vermillion) !important; font-size: 0.78rem !important; font-family: 'Inter', sans-serif !important; }
-    .hs-form-prospectus .submitted-message { font-family: 'Fraunces', serif !important; font-style: italic !important; font-size: 1.1rem !important; color: var(--forest) !important; padding: 1rem 0 !important; }
+    .hs-form-prospectus select:focus {
+      outline: none !important;
+      border-color: var(--forest) !important;
+    }
+    .hs-form-prospectus .hs-button {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 0.65rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase !important;
+      padding: 1rem 2rem !important;
+      background: var(--forest) !important;
+      color: var(--paper) !important;
+      border: 1px solid var(--forest) !important;
+      border-radius: 0 !important;
+      cursor: pointer !important;
+      transition: background 0.12s !important;
+      margin-top: 0.5rem !important;
+    }
+    .hs-form-prospectus .hs-button:hover {
+      background: var(--ink) !important;
+      border-color: var(--ink) !important;
+    }
+    .hs-form-prospectus .hs-error-msgs {
+      list-style: none !important;
+      padding: 0 !important;
+      margin-top: 0.35rem !important;
+    }
+    .hs-form-prospectus .hs-error-msg {
+      color: var(--vermillion) !important;
+      font-size: 0.78rem !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+    .hs-form-prospectus .submitted-message {
+      font-family: 'Fraunces', serif !important;
+      font-style: italic !important;
+      font-size: 1.1rem !important;
+      color: var(--forest) !important;
+      padding: 1rem 0 !important;
+    }
 
-    .disclosure { margin-top: 2rem; padding: 1.25rem 1.5rem; border: 1px dashed rgba(244,241,235,0.25); }
-    .disclosure-label { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,211,68,0.6); margin-bottom: 0.5rem; }
-    .disclosure-body { font-size: 0.78rem; line-height: 1.6; color: rgba(244,241,235,0.55); }
+    /* ── Disclosure (bottom only) ───────────────────────────────── */
+    .disclosure-block {
+      margin-top: 2rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px dashed rgba(244,241,235,0.25);
+    }
+    .disclosure-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(244,241,235,0.5);
+      margin-bottom: 0.5rem;
+    }
+    .disclosure-body {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: rgba(244,241,235,0.55);
+    }
 
-    /* Footer */
-    footer { padding: 3rem 4rem 2rem; border-top: 1px solid rgba(26,51,40,0.15); background: var(--paper); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .footer-col h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,51,40,0.5); margin-bottom: 0.85rem; }
-    .footer-col a { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.08em; color: rgba(13,13,13,0.65); text-decoration: none; padding: 0.3rem 0; transition: color 0.12s; }
-    .footer-col a:hover { color: var(--forest); }
-    .footer-bottom { padding: 1.25rem 4rem 2rem; background: var(--paper); display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(13,13,13,0.4); border-top: 1px solid rgba(26,51,40,0.08); flex-wrap: wrap; gap: 0.75rem; }
+    /* ── Footer ─────────────────────────────────────────────────── */
+    .foot {
+      padding: 3rem 0 4rem;
+      border-top: 1px solid var(--ink-10);
+    }
+    .foot-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .foot-col h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-30);
+      margin-bottom: 0.85rem;
+    }
+    .foot-col a {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-55);
+      text-decoration: none;
+      padding: 0.3rem 0;
+      transition: color 0.12s;
+    }
+    .foot-col a:hover { color: var(--forest); }
+    .foot-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-30);
+      border-top: 1px solid var(--ink-10);
+      padding-top: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .foot-row .vm { color: var(--vermillion); }
 
-    @media (max-width: 768px) {
-      .nav, .ticker { padding: 1rem 1.5rem; }
-      .hero { padding: 4rem 1.5rem 3rem; }
-      .why { padding: 3rem 1.5rem; }
-      .why-grid { grid-template-columns: 1fr; }
-      .why-card { border-right: 1px solid rgba(26,51,40,0.18) !important; border-bottom: none; }
-      .why-card:last-child { border-bottom: 1px solid rgba(26,51,40,0.18); }
-      .request { padding: 3rem 1.5rem; }
-      footer { grid-template-columns: 1fr; padding: 3rem 1.5rem 1.5rem; }
-      .footer-bottom { padding: 1rem 1.5rem 2rem; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
-      .nav-right { gap: 0.75rem; }
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .surface { padding: 0 1.25rem; }
+      .hero { padding: 3.5rem 0 2.5rem; }
+      .sec { padding: 3rem 0; }
+      .cta-secondary { display: block; margin-left: 0; margin-top: 1rem; }
+      .foot-cols { grid-template-columns: 1fr; }
+      .foot-row { flex-direction: column; align-items: flex-start; }
+      .masthead-tag { display: none; }
+      .ticker-line, .ticker-foot { padding-left: 1.25rem; padding-right: 1.25rem; }
     }
   </style>
 </head>
 <body>
 
+<!-- Caution stripe — forest/paper alternation, 10px family-wide -->
 <div class="stripe"></div>
 
-<nav class="nav">
-  <a href="/" class="bmark">b<span class="dot">.</span></a>
-  <div class="nav-right">
-    <a href="https://b.studio" class="nav-link">← b<span class="brand-dot">.</span>studio</a>
-    <a href="https://lmmi.b.studio" class="nav-link">← Studio b. LMMI</a>
-    <a href="#request" class="nav-link">Backtester access →</a>
+<div class="surface">
+
+  <div class="masthead">
+    <a href="/" class="bmark">b<span class="dot">.</span></a>
+    <span class="masthead-tag">LP ENTRY · STUDIO B<span style="color:var(--vermillion)">.</span> LMM BRIDGE FUND I</span>
   </div>
-</nav>
 
-<section class="hero">
-  <p class="firm-label">Studio <span class="brand-b">b<span class="brand-dot">.</span></span> LMM Bridge Fund I · LP entry</p>
-  <h1>The non-bank lender for the global <em>lower middle market.</em></h1>
-  <p class="hero-body">Studio <span class="brand-b">b<span class="brand-dot">.</span></span> LMM Bridge Fund I is purpose-built for the deepest structural gap in LMM credit — where borrower credit is good but banks cannot move quickly enough, structure flexibly enough, or stay long enough. The fund underwrites against the same data we publish quarterly as Studio b. LMMI. Fund I opens to qualified purchasers and accredited investors at first close.</p>
-  <a href="#request" class="hero-cta">Request the backtester →</a>
-</section>
+  <!-- Hero -->
+  <div class="hero">
+    <p class="eyebrow">Studio b<span style="color:var(--vermillion)">.</span> LMM Bridge Fund I · LP entry</p>
+    <h1>Invest in the gap banks can't reach.</h1>
+    <p class="lede">Studio b. LMM Bridge Fund I is purpose-built for the deepest structural gap in LMM credit — where borrower credit is good but banks cannot move quickly enough, structure flexibly enough, or stay long enough. The fund underwrites against the same data we publish quarterly as Studio b. LMMI. Fund I opens to qualified purchasers and accredited investors at first close.</p>
+    <a href="#request" class="cta">Verify accreditation →</a>
+    <a href="https://lmmi.b.studio/methodology" class="cta-secondary">Read methodology</a>
+  </div>
 
+</div><!-- /surface -->
+
+<!-- DLI Ticker — full-bleed forest bg -->
 <div class="ticker" id="dli-ticker">
   <div class="ticker-line">
     <span>LMMI</span>
@@ -179,34 +619,38 @@
   </div>
 </div>
 
-<section class="why">
-  <div class="why-head">
-    <p class="why-eyebrow">Why invest</p>
-    <h2>The structural <em>gap</em>, the proprietary <em>edge</em>, the institutional <em>structure.</em></h2>
-  </div>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-num">01 — The gap</div>
-      <h3 class="why-title">Their credit is good. The bank can't move.</h3>
-      <p class="why-body">Lower middle market businesses hit moments that require speed, structural flexibility, or longer patience than a conventional bank can deliver. This is not a credit-quality gap — it is a capability gap. That gap is our market.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-num">02 — Our edge</div>
-      <h3 class="why-title">Proprietary deal flow. Open benchmarks.</h3>
-      <p class="why-body">Capital sits inside a broader operating practice that puts us in rooms with operators, advisors, and capital providers across US and UK LMM. The same data that informs our underwriting is published quarterly as Studio b. LMMI — the open Lower Middle Market Direct Lending Index.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-num">03 — Structure</div>
-      <h3 class="why-title">Fund I. BVI master + Delaware feeder. 7-year closed-end.</h3>
-      <p class="why-body">4-year reinvestment, 3-year harvest. Quarterly distributions. ILPA-aligned reporting from inception. Non-U.S. LPs access the fund without entanglement in the U.S. tax perimeter. Qualified purchasers and institutional LPs only.</p>
-    </div>
-  </div>
-</section>
+<div class="surface">
 
+  <!-- §1 The gap / §2 Our edge / §3 Structure — 01 / 02 / 03 preserved -->
+  <section class="sec">
+    <p class="sec-num">01<span class="grey">·</span>THE GAP</p>
+    <h2>Their credit is good. The bank can't move.</h2>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-num">01 — The gap</div>
+        <h3 class="why-title">Their credit is good. The bank can't move.</h3>
+        <p class="why-body">Lower middle market businesses hit moments that require speed, structural flexibility, or longer patience than a conventional bank can deliver. This is not a credit-quality gap — it is a capability gap. That gap is our market.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02 — Our edge</div>
+        <h3 class="why-title">Proprietary deal flow. Open benchmarks.</h3>
+        <p class="why-body">Capital sits inside a broader operating practice that puts us in rooms with operators, advisors, and capital providers across US and UK LMM. The same data that informs our underwriting is published quarterly as Studio b. LMMI — the open Lower Middle Market Direct Lending Index.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03 — Structure</div>
+        <h3 class="why-title">Fund I. BVI master + Delaware feeder. 7-year closed-end.</h3>
+        <p class="why-body">4-year reinvestment, 3-year harvest. Quarterly distributions. ILPA-aligned reporting from inception. Non-U.S. LPs access the fund without entanglement in the U.S. tax perimeter. Qualified purchasers and institutional LPs only.</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /surface -->
+
+<!-- Attestation / form section — full-bleed forest bg -->
 <section class="request" id="request">
   <div class="request-inner">
     <p class="request-eyebrow">Rule 506(c) · Accredited self-attestation · Backtester access</p>
-    <h2>Run the backtest. <em>Sharpen the thesis.</em></h2>
+    <h2>Run the backtest. Sharpen the thesis.</h2>
     <p class="request-intro">We don't send a deck. We share access to the LMMI backtest model — apply your own assumptions to thirty years of cross-jurisdictional default and recovery data, and see how the strategy would have performed against your scenarios. Your model runs sharpen our thesis. Fund I is offered under Rule 506(c) of Regulation D — public solicitation of accredited investors is permitted, and subscription requires <strong>third-party verification</strong> of accredited status prior to investment. Backtester access is shared after self-attestation and a brief introduction.</p>
 
     <div class="gate">
@@ -231,32 +675,38 @@
       <a id="mailto-fallback" class="mailto-fallback" href="mailto:invest@b.studio?subject=LMMI%20Backtester%20Access&amp;body=Name%3A%20%0AFirm%3A%20%0AAccredited%3A%20Yes%0ANotes%3A%20" style="display:none;">Email invest@b.studio →</a>
     </div>
 
-    <div class="disclosure">
+    <!-- Disclosure — bottom only, inside the request section -->
+    <div class="disclosure-block">
       <p class="disclosure-label">Disclosure</p>
       <p class="disclosure-body">Fund I is offered under Rule 506(c) of Regulation D, which permits general solicitation of accredited investors. Any subscription will require third-party verification of accredited status as defined in Rule 501(a). This page is informational only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security. Any offering will be made solely to verified accredited investors via final fund documentation (PPM, LPA, subscription documents). Past performance is not indicative of future results. Forward-looking statements are subject to risks and uncertainties — actual results may differ materially.</p>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-col">
-    <h4>Read the index</h4>
-    <a href="https://lmmi.b.studio">Studio <span class="brand-b">b<span class="brand-dot">.</span></span> LMMI — the index</a>
-    <a href="https://lmmi.b.studio#why">Why we built it</a>
-    <a href="mailto:invest@b.studio">invest@b<span class="brand-dot">.</span>studio</a>
+<!-- Footer -->
+<div class="surface">
+  <div class="foot">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Read the index</h4>
+        <a href="https://lmmi.b.studio">Studio b<span style="color:var(--vermillion)">.</span> LMMI — the index</a>
+        <a href="https://lmmi.b.studio#why">Why we built it</a>
+        <a href="mailto:invest@b.studio">invest@b<span style="color:var(--vermillion)">.</span>studio</a>
+      </div>
+      <div class="foot-col">
+        <h4>Studio b<span style="color:var(--vermillion)">.</span></h4>
+        <a href="https://b.studio">b<span style="color:var(--vermillion)">.</span>studio</a>
+        <a href="https://bolt.b.studio">Bolt</a>
+        <a href="https://acuops.com">AcuOps</a>
+        <a href="https://amplify.b.studio">Amplify</a>
+      </div>
+    </div>
+    <div class="foot-row">
+      <span>&copy; 2026 Studio b<span class="vm">.</span> Consulting, LLC</span>
+      <span>Capital, by Studio b<span class="vm">.</span> · For accredited investors only</span>
+      <span>INVEST<span class="vm">.</span>B<span class="vm">.</span>STUDIO</span>
+    </div>
   </div>
-  <div class="footer-col">
-    <h4>Studio <span class="brand-b">b<span class="brand-dot">.</span></span></h4>
-    <a href="https://b.studio">b<span class="brand-dot">.</span>studio</a>
-    <a href="https://bolt.b.studio">Bolt</a>
-    <a href="https://acuops.com">AcuOps</a>
-    <a href="https://amplify.b.studio">Amplify</a>
-  </div>
-</footer>
-
-<div class="footer-bottom">
-  <span>&copy; 2026 Studio <span class="brand-b">b<span class="brand-dot">.</span></span> Consulting, LLC</span>
-  <span>Capital, by Studio <span class="brand-b">b<span class="brand-dot">.</span></span> · For accredited investors only</span>
 </div>
 
 <!-- DLI ticker fetch -->
@@ -316,7 +766,6 @@
           css: '',
           cssClass: 'hs-form-prospectus'
         });
-        // After 2s, if no form rendered, surface the mailto fallback
         setTimeout(function() {
           var target = document.getElementById('hs-form-target');
           if (target && target.querySelectorAll('form').length === 0) {
@@ -337,7 +786,6 @@
         formWrap.classList.add('live');
         if (gateHint) gateHint.style.display = 'none';
         loadHubSpotForm();
-        // Smooth scroll the form into view
         setTimeout(function() {
           formWrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
