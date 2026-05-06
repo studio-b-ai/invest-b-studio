@@ -1,0 +1,29 @@
+/* ============================================================================
+ * invest.b.studio — family header
+ * Binary-accent stripe system (locked 2026-05-06 via /design-consultation).
+ *
+ * Loaded by the LP-entry surface for Studio b. LMM Bridge Fund I.
+ *
+ * Construction (top → bottom):
+ *   1px ink@60 outline + 10px forest/paper diagonal stripe (-45°, 9/9 bands)
+ *   + 1px ink@60 outline.
+ *
+ * invest is a STRUCTURAL surface — bare stripe, no accent line. Identity
+ * work happens in the §01 numbering, the methodology references, and the
+ * accreditation gate, not the header. Cadence sibling sites (markdown,
+ * lmmi) add a 3px ::after accent in their own header.css; structural
+ * siblings (b.studio, this) skip the accent.
+ *
+ * Co-located outside the page so future content edits don't touch visual.
+ * ============================================================================ */
+
+.stripe {
+  height: 10px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--forest, #1A3328) 0, var(--forest, #1A3328) 9px,
+    var(--paper,  #F4F1EB) 9px, var(--paper,  #F4F1EB) 18px
+  );
+  border-top:    1px solid rgba(13, 13, 13, 0.60);
+  border-bottom: 1px solid rgba(13, 13, 13, 0.60);
+}
